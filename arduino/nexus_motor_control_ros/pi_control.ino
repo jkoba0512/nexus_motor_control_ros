@@ -20,7 +20,7 @@ inline void calPIControl(int& motorCommand1, int& motorCommand2, float dAngleRat
     accErr1 += err1;
     accErr2 += err2;
 
-    motorCommand1 = Kp1 * err1 + Ki1 * accErr1;
-    motorCommand2 = Kp2 * err2 + Ki2 * accErr2;
+    motorCommand1 = Kp_v_1 * err1 + Ki_v_1 * accErr1;
+    motorCommand2 = Kp_v_2 * err2 + Ki_v_2 * accErr2;
 }
 

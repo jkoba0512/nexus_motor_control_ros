@@ -1,6 +1,6 @@
 nexus_motor_control:
-  gains_1: {Kp: 10.0, Ki: 1.0}  # PI gains
-  gains_2: {Kp: 10.0, Ki: 1.0}
+  gains_1: {Kp_v: 10.0, Ki_v: 1.0, Kp_p: 1.0}  # PI gains
+  gains_2: {Kp_v: 10.0, Ki_v: 1.0, Kp_p: 1.0}
   gear_ratio_1: 64.0  # gear ratio
   gear_ratio_2: 64.0
   res_enc_1: 12.0  # resolution of encoder

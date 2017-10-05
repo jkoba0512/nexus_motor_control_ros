@@ -25,8 +25,8 @@ float dAngleRate_RadPerS1 = 0.0;
 float dAngleRate_RadPerS2 = 0.0;
 
 // parameters from ROS parameter server
-float Kp1, Ki1;                  // PI gains
-float Kp2, Ki2;
+float Kp_v_1, Ki_v_1, Kp_p_1;      // PI gains for velocity loop and position loop
+float Kp_v_2, Ki_v_2, Kp_p_2;
 float GEAR_RATIO_1, GEAR_RATIO_2;  // gear ratio
 float RES_ENC_1, RES_ENC_2;        // resolution of encoder
 
@@ -64,10 +64,12 @@ void setup() {
   }
   
   // get parameters
-  if (!nh.getParam("/nexus_motor_control/gains_1/Kp", &Kp1, 1)) Kp1 = 0.0;  // PI gains
-  if (!nh.getParam("/nexus_motor_control/gains_1/Ki", &Ki1, 1)) Ki1 = 0.0;
-  if (!nh.getParam("/nexus_motor_control/gains_2/Kp", &Kp2, 1)) Kp2 = 0.0;
-  if (!nh.getParam("/nexus_motor_control/gains_2/Ki", &Ki2, 1)) Ki2 = 0.0;
+  if (!nh.getParam("/nexus_motor_control/gains_1/Kp_v", &Kp_v_1, 1)) Kp_v_1 = 0.0;  // PI gains
+  if (!nh.getParam("/nexus_motor_control/gains_1/Ki_v", &Ki_v_1, 1)) Ki_v_1 = 0.0;
+  if (!nh.getParam("/nexus_motor_control/gains_1/Kp_p", &Kp_p_1, 1)) Kp_p_1 = 0.0;
+  if (!nh.getParam("/nexus_motor_control/gains_2/Kp_v", &Kp_v_2, 1)) Kp_v_2 = 0.0;
+  if (!nh.getParam("/nexus_motor_control/gains_2/Ki_v", &Ki_v_2, 1)) Ki_v_2 = 0.0;
+  if (!nh.getParam("/nexus_motor_control/gains_1/Kp_p", &Kp_p_1, 1)) Kp_p_2 = 0.0;
   if (!nh.getParam("/nexus_motor_control/gear_ratio_1", &GEAR_RATIO_1, 1)) GEAR_RATIO_1 = 64.0;  // gear ratio
   if (!nh.getParam("/nexus_motor_control/gear_ratio_2", &GEAR_RATIO_2, 1)) GEAR_RATIO_2 = 64.0;
   if (!nh.getParam("/nexus_motor_control/res_enc_1", &RES_ENC_1, 1)) RES_ENC_1 = 12.0;  // resulution of encoder
